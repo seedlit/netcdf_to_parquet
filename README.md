@@ -1,17 +1,21 @@
-# Jua Data Engineer Assignment
+# Data Transformation pipeline: NetCDF to Parquet
 
 
 ### Task
-Create a pipeline for transforming 2022 total precipitation NetCDF files into Parquet format. <br/>
+This pipeline transforms total precipitation NetCDF files into Parquet format. <br/>
 The source data is publicly available and is hosted at `gs://gcp-public-data-arco-era5/raw/date-variable-single_level`.
 
-### Requirements
- - The transformed data should support regular queries with filtering with timestamp.
- - The transformed data should support filtering by H3 geospatial index
+The transformed data supports:
+ - regular queries with filtering with timestamp.
+ - filtering by H3 geospatial index
 
-<br/><br/>
-# Solution
-The solution has been implemented in python.
+## How to run
+### TODO: update instructions
+Build the Docker image
+`docker build -t data_transformation .`
+
+Run the Docker container
+`docker run -v $(pwd)/output:/app/output data_transformation 01-01-2022 02-01-2022 out_dir`
 
 ### Features
  - Poetry for dependency management - Poetry makes life easier for managing dependencies and creating environments. To setup a virtual environment, simply run `poetry install` from the root directory. It will create a virtual environment for you. To spawn a shell, run `poetry shell`. Note that you need to have Poetry pre-installed in your system. To install Poetry, follow the steps listed [here](https://python-poetry.org/docs/#installation).
@@ -45,3 +49,9 @@ Note that some of the tests are live tests that actually download a file from GC
  - OOP?
  - Package it into a library
  - setup GitHub actions
+ - add coverage report?
+ - add doc strings
+ - add exception handling and logs
+ - add tqdm or some other progress bar
+
+## Improvements

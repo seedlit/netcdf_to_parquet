@@ -1,3 +1,5 @@
+import logging
+
 import gcsfs
 import h3
 import pandas as pd
@@ -5,10 +7,15 @@ import xarray as xr
 
 from . import utils
 
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
 
 def netcdf_to_dataframe(
     file_path: str, file_system: gcsfs.GCSFileSystem
 ) -> pd.DataFrame:
+    logging.info("Streaming data from GCS bucket for %s", file_path)
     with utils.open_file(file_path, file_system, mode="rb") as f:
         return xr.open_dataset(f).to_dataframe().reset_index()
 

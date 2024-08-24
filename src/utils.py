@@ -1,8 +1,15 @@
+import logging
+
 import gcsfs
+
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 
 def initialize_gcsfs():
-    return gcsfs.GCSFileSystem()
+    logging.info("Initializing GCS file system")
+    return gcsfs.GCSFileSystem(token="anon")
 
 
 def open_file(
