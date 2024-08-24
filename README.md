@@ -18,6 +18,17 @@ The solution has been implemented in python.
 
  - To avoid saving the source file locally, this project uses [gcsfs](https://github.com/fsspec/gcsfs) to stream the source NetCDF file into memory.
 
+ - Pre-commit Hooks: This project uses pre-commit hooks to ensure code quality. To set up pre-commit hooks, run:
+
+    ```sh
+    poetry run pre-commit install
+    ```
+    To run pre-commit hooks on all files manually, run:
+    ```sh
+    poetry run pre-commit run --all-files
+    ```
+
+
 ### Tests
 To run the tests, simply run `poetry run pytest`. <br/>
 Note that some of the tests are live tests that actually download a file from GCS bucket. Depending on your system and internet speed, it might take upto few seconds to execute the tests.

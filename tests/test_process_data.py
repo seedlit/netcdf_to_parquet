@@ -4,14 +4,7 @@ import tempfile
 import pandas as pd
 import pytest
 
-from src import constants, process_data, utils
-
-#  TODO: add a note that all of these are live tests
-
-
-@pytest.fixture
-def test_file_path():
-    return f"{constants.GCS_BASE_URL}/2022/01/01/total_precipitation/surface.nc"
+from src import process_data, utils
 
 
 @pytest.fixture
