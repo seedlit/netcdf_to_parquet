@@ -28,6 +28,9 @@ The solution has been implemented in python.
     poetry run pre-commit run --all-files
     ```
 
+- GitHub Actions: This project uses GitHub Actions for continuous integration. The workflow is defined in `.github/workflows/ci.yml` and runs tests on every push to the `master` branch.
+
+
 
 ### Tests
 To run the tests, simply run `poetry run pytest`. <br/>
@@ -41,3 +44,4 @@ Note that some of the tests are live tests that actually download a file from GC
  - how to speed up?
  - OOP?
  - Package it into a library
+ - setup GitHub actions
