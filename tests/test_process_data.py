@@ -4,7 +4,7 @@ import tempfile
 import pandas as pd
 import pytest
 
-from src import process_data
+from transform import process_data
 
 H3_INDEX = "890326233abffff"
 

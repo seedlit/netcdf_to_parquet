@@ -36,7 +36,7 @@ To generate and activate the environment, run following commands from the root d
 ```sh
 poetry install
 poetry shell
-python -m src 01-01-2023 03-01-2023 ./parquet_files
+python -m transform 01-01-2023 03-01-2023 ./parquet_files
 ```
 
 ### Using pip

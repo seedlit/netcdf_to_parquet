@@ -6,7 +6,7 @@ import pathlib
 import gcsfs
 import tqdm
 
-from src import constants, process_data, utils
+from transform import constants, process_data, utils
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
