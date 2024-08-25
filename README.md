@@ -14,7 +14,7 @@ The transformed data supports:
 Build the Docker image
 `docker build -t data_transformation .`
 
-Run the Docker container
+Run the Docker container (for example)
 `docker run -v $(pwd)/output:/app/output data_transformation 01-01-2022 02-01-2022 out_dir`
 
 ### Features
