@@ -80,12 +80,15 @@ def main(
         out_dir (str): Output directory for Parquet files. Defaults to "parquet_files".
         args (argparse.Namespace, optional): Command-line arguments. Defaults to None.
     """
-    if args is None:
+    if args is None and (
+        start_date is None or end_date is None or out_dir is None
+    ):
         args = parse_arguments()
 
-    start_date = args.start_date or start_date
-    end_date = args.end_date or end_date
-    out_dir = args.out_dir or out_dir
+    if start_date is None:
+        start_date = args.start_date
+    if end_date is None:
+        end_date = args.end_date
 
     if start_date is None or end_date is None:
         raise ValueError("start_date and end_date must be provided.")

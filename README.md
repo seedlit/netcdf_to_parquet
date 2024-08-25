@@ -121,6 +121,8 @@ There is some scope of improvements to further enhance the performance
 
  - __Tests and Coverage Report__: Add some more end to end tests (including for one when this is being used as a library) and add coverage report.
 
+ - __Logic of main() function__: The implementation of the `main()` function in `__main__.py` seems unnecessarily complex and convulated. This can be refactored and simplified.
+
 
 ### Fix:
 There are some minor issues that need to be fixed:
