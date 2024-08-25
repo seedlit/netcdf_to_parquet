@@ -40,7 +40,20 @@ python -m data_transformations 01-01-2023 03-01-2023 ./parquet_files
 ```
 
 ### Using pip
-..
+For the ease of usability, this is also available on [test pypi](https://test.pypi.org) (protype stage).
+<br/>
+To install it in your environment, run:
+```sh
+pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ netcdf-to-parquet 
+```
+
+To generate files in Apache parquet format, here's an example command:
+```sh
+import datetime
+import netcdf_to_parque
+
+netcdf_to_parquet.main(start_date=datetime.date(2022, 1, 1), end_date = datetime.date(2022, 1, 4), out_dir = "parquet_files"
+```
 
 
 ### Features
@@ -74,8 +87,9 @@ Note that some of the tests are live tests that actually download a file from GC
  - add coverage report?
  - add doc strings
  - fix black and flake8 conflict
+ - why is GCS getting initialized when imported as library
 
 ## Improvements
  - speed up
  - OOP
-
+ - bloated with dependencies
