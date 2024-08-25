@@ -1,6 +1,6 @@
 import gcsfs
 
-from data_transformation import utils
+from data_transformations import utils
 
 
 def test_initialize_gcsfs():
