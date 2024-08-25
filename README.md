@@ -1,7 +1,6 @@
 # Data Transformation pipeline: NetCDF to Parquet
 
 
-### Task
 This pipeline transforms total precipitation NetCDF files into Parquet format. <br/>
 The source data is publicly available and is hosted at `gs://gcp-public-data-arco-era5/raw/date-variable-single_level`.
 
@@ -109,16 +108,25 @@ print(filtered_dataframe.head())
 To run the tests, simply run `poetry run pytest`. <br/>
 Note that some of the tests are live tests that actually download a file from GCS bucket. Depending on your system and internet speed, it might take upto few seconds to execute the tests.
 
-## TODOs
- - add queries
- - add visual examples in readme
- - add streamlit?
- - add coverage report?
- - fix black and flake8 conflict
- - why is GCS getting initialized when imported as library
- - add a test for using it as a library
 
 ## Improvements
- - speed up
- - OOP
- - bloated with dependencies
+
+There is some scope of improvements to further enhance the performance
+
+ - __Parallel Processing__: Since we would be potentially dealing with hundreds of files, we can spped up the process significantly by using parallel processing.
+
+ - __Object Oriented Programming__: For better maintainability, we should refactor the code to use OOP (perhaps rewrite using SOLID design principles).
+
+ - __Bloated with dependencies__: Currently, this has some heavy dependencies. To have something light weight, we can narrow down the exact functionalities needed and look for some light-weight libraries.
+
+ - __Tests and Coverage Report__: Add some more end to end tests (including for one when this is being used as a library) and add coverage report.
+
+
+### Fix:
+There are some minor issues that need to be fixed:
+
+ - When this is being used as a library in a python environment, GCS gets initialized when it is imported. This is not the desired behaviour. However, this should be an easy fix.
+
+ - When this is used as a container, it proceeds to open the file remotely and then suddenly dies without any error. This needs to be fixed.
+
+ - There are some conflicts with `black` and `flake8`'s formatting. These conflicts need to be fixed.
