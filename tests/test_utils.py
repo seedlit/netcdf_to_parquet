@@ -1,6 +1,6 @@
 import gcsfs
 
-from data_transformations import utils
+from netcdf_to_parquet import utils
 
 
 def test_initialize_gcsfs():

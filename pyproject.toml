@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "data-transformation"
+name = "netcdf-to-parquet"
 version = "0.1.0"
 description = "Transforms total precipitation NetCDF files into Parquet format."
 authors = ["Naman Jain"]

@@ -1,7 +1,7 @@
 import gcsfs
 import pytest
 
-from data_transformations import constants, utils
+from netcdf_to_parquet import constants, utils
 
 
 @pytest.fixture

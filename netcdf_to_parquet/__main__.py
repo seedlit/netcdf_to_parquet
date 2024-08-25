@@ -6,7 +6,7 @@ import pathlib
 import gcsfs
 import tqdm
 
-from data_transformations import constants, process_data, utils
+from netcdf_to_parquet import constants, process_data, utils
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
