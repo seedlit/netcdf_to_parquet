@@ -42,7 +42,7 @@ python -m data_transformations 01-01-2023 03-01-2023 ./parquet_files
 ### Using pip
 For the ease of usability, this is also available on [test pypi](https://test.pypi.org) (protype stage).
 <br/>
-To install it in your environment, run:
+To install it in your python environment, run:
 ```sh
 pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ netcdf-to-parquet 
 ```
@@ -50,11 +50,41 @@ pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://
 To generate files in Apache parquet format, here's an example command:
 ```sh
 import datetime
-import netcdf_to_parque
+import netcdf_to_parquet
 
-netcdf_to_parquet.main(start_date=datetime.date(2022, 1, 1), end_date = datetime.date(2022, 1, 4), out_dir = "parquet_files"
+netcdf_to_parquet.main(
+    start_date=datetime.date(2022, 1, 1),
+    end_date=datetime.date(2022, 1, 4),
+    out_dir="parquet_files",
+)
 ```
 
+## Queries
+Once you have generated the parquet files, you can load it as a dataframe and run queries on timestamp, H3 index, etc.
+<br/>
+Here's an end to end example to generate a parquet file for total precipitation data from January 1, 2022 and then run queries on it.
+
+```sh
+import datetime
+import pandas as pd
+import netcdf_to_parquet
+
+netcdf_to_parquet.main(
+    start_date=datetime.date(2022, 1, 1),
+    end_date=datetime.date(2022, 1, 1),
+    out_dir="parquet_files",
+)
+dataframe = pd.read_parquet("parquet_files/precipitation_01_01_2022.parquet")
+
+# filtering by datetime
+filter_timestamp = pd.Timestamp("2022-01-01 02:00:00")
+filtered_dataframe = dataframe[dataframe["time"] == filter_timestamp]
+print(filtered_dataframe.head())
+
+# filtering by H3 indexing
+filtered_dataframe = dataframe[dataframe["h3_index"] == "890326233abffff"]
+print(filtered_dataframe.head())
+```
 
 ### Features
 
@@ -83,9 +113,7 @@ Note that some of the tests are live tests that actually download a file from GC
  - add queries
  - add visual examples in readme
  - add streamlit?
- - Package it into a library
  - add coverage report?
- - add doc strings
  - fix black and flake8 conflict
  - why is GCS getting initialized when imported as library
 
