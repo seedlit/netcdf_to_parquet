@@ -23,8 +23,6 @@ pytest = "^8.3.2"
 pre-commit = "^3.8.0"
 flake8 = "^7.1.1"
 
-[tool.black]
-line-length = 79
 
 [build-system]
 requires = ["poetry-core"]

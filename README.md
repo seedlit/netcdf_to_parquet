@@ -9,16 +9,42 @@ The transformed data supports:
  - regular queries with filtering with timestamp.
  - filtering by H3 geospatial index
 
-## How to run
-### TODO: update instructions
-Build the Docker image
-`docker build -t data_transformation .`
+## Installation
 
-Run the Docker container (for example)
-`docker run -v $(pwd)/output:/app/output data_transformation 01-01-2022 02-01-2022 out_dir`
+### Using Docker
+To build the docker image, run:
+```sh
+docker build -t data_transformation .
+```
+
+To run the docker container, here's an example command:
+`docker run -v $(pwd)/output:/app/output data_transformation <start_date> <end_date> <out_dir>`
+<br/>
+Here, `start_date` and `end_date` are in DD-MM-YYYY format. 
+<br/>
+And `out_dir` is the directory where the parquet files will be generated. 
+
+For example:
+```sh
+docker run -v $(pwd)/output:/app/output data_transformation 01-01-2022 04-01-2022 out_dir
+```
+
+### Using Poetry
+Poetry makes life easier for managing dependencies and creating environments. Note that you need to have Poetry pre-installed in your system. To install Poetry, follow the steps listed [here](https://python-poetry.org/docs/#installation).
+
+To generate and activate the environment, run following commands from the root directory:
+```sh
+poetry install
+poetry shell
+python -m src 01-01-2023 03-01-2023 ./parquet_files
+```
+
+### Using pip
+..
+
 
 ### Features
- - Poetry for dependency management - Poetry makes life easier for managing dependencies and creating environments. To setup a virtual environment, simply run `poetry install` from the root directory. It will create a virtual environment for you. To spawn a shell, run `poetry shell`. Note that you need to have Poetry pre-installed in your system. To install Poetry, follow the steps listed [here](https://python-poetry.org/docs/#installation).
+
 
  - To avoid saving the source file locally, this project uses [gcsfs](https://github.com/fsspec/gcsfs) to stream the source NetCDF file into memory.
 
@@ -32,7 +58,7 @@ Run the Docker container (for example)
     poetry run pre-commit run --all-files
     ```
 
-- GitHub Actions: This project uses GitHub Actions for continuous integration. The workflow is defined in `.github/workflows/ci.yml` and runs tests on every push to the `master` branch.
+- GitHub Actions: This project uses GitHub Actions for continuous integration. The workflow is defined in `.github/workflows/ci.yml` and runs tests on every push to the `main` branch.
 
 
 
@@ -41,17 +67,15 @@ To run the tests, simply run `poetry run pytest`. <br/>
 Note that some of the tests are live tests that actually download a file from GCS bucket. Depending on your system and internet speed, it might take upto few seconds to execute the tests.
 
 ## TODOs
- - add dockerfile
- - add container
+ - add queries
  - add visual examples in readme
  - add streamlit?
- - how to speed up?
- - OOP?
  - Package it into a library
- - setup GitHub actions
  - add coverage report?
  - add doc strings
- - add exception handling and logs
- - add tqdm or some other progress bar
+ - fix black and flake8 conflict
 
 ## Improvements
+ - speed up
+ - OOP
+

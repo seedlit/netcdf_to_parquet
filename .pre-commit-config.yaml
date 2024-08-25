@@ -6,6 +6,8 @@ repos:
         entry: poetry run black
         language: system
         types: [python]
+        args:
+          - --line-length=79
 
       - id: isort
         name: isort
