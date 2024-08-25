@@ -12,4 +12,4 @@ COPY . .
 
 ENV PYTHONPATH=/app
 
-ENTRYPOINT ["poetry", "run", "python", "src/__main__.py"]
+ENTRYPOINT ["poetry", "run", "python", "netcdf_to_parquet/__main__.py"]

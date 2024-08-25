@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "netcdf-to-parquet"
-version = "0.1.4"
+version = "0.1.5"
 description = "Transforms total precipitation NetCDF files into Parquet format."
 authors = ["Naman Jain"]
 license = "MIT"

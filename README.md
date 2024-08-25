@@ -14,11 +14,11 @@ The transformed data supports:
 ### Using Docker
 To build the docker image, run:
 ```sh
-docker build -t data_transformations .
+docker build -t netcdf_to_parquet .
 ```
 
 To run the docker container, here's an example command:
-`docker run -v $(pwd)/output:/app/output data_transformations <start_date> <end_date> <out_dir>`
+`docker run -v $(pwd)/output:/app/output netcdf_to_parquet <start_date> <end_date> <out_dir>`
 <br/>
 Here, `start_date` and `end_date` are in DD-MM-YYYY format. 
 <br/>
@@ -26,7 +26,7 @@ And `out_dir` is the directory where the parquet files will be generated.
 
 For example:
 ```sh
-docker run -v $(pwd)/output:/app/output data_transformations 01-01-2022 04-01-2022 out_dir
+docker run -v $(pwd)/output:/app/output netcdf_to_parquet 01-01-2022 04-01-2022 out_dir
 ```
 
 ### Using Poetry
@@ -36,7 +36,7 @@ To generate and activate the environment, run following commands from the root d
 ```sh
 poetry install
 poetry shell
-python -m data_transformations 01-01-2023 03-01-2023 ./parquet_files
+python -m netcdf_to_parquet 01-01-2023 03-01-2023 ./parquet_files
 ```
 
 ### Using pip
@@ -116,6 +116,7 @@ Note that some of the tests are live tests that actually download a file from GC
  - add coverage report?
  - fix black and flake8 conflict
  - why is GCS getting initialized when imported as library
+ - add a test for using it as a library
 
 ## Improvements
  - speed up

@@ -80,25 +80,19 @@ def main(
         out_dir (str): Output directory for Parquet files. Defaults to "parquet_files".
         args (argparse.Namespace, optional): Command-line arguments. Defaults to None.
     """
-    if start_date is None or end_date is None:
-        if args is None:
-            raise ValueError(
-                "Please provide values for start_date and end_date either as arguments or through the command line interface."
-            )
+    if args is None:
+        args = parse_arguments()
 
-        start_date = args.start_date or start_date
-        end_date = args.end_date or end_date
-        out_dir = args.out_dir or out_dir
+    start_date = args.start_date or start_date
+    end_date = args.end_date or end_date
+    out_dir = args.out_dir or out_dir
 
-    # TODO: improve logic
     if start_date is None or end_date is None:
         raise ValueError("start_date and end_date must be provided.")
 
     pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)
-
     current_date = start_date
     total_days = (end_date - current_date).days + 1
-
     for _ in tqdm.tqdm(range(total_days), desc="Processing dates"):
         try:
             date_str = current_date.strftime("%Y/%m/%d")
@@ -106,11 +100,8 @@ def main(
             output_path = f"{out_dir}/precipitation_{current_date.strftime('%d_%m_%Y')}.parquet"
             netcdf_to_parquet(file_path, output_path, file_system)
         except Exception as e:
-            logging.error(
-                f"Failed to process date {current_date.strftime('%d_%m_%Y')}: {e}"
-            )
-        finally:
-            current_date += datetime.timedelta(days=1)
+            logging.error(f"Failed to process date {current_date}: {e}")
+        current_date += datetime.timedelta(days=1)
 
 
 if __name__ == "__main__":
